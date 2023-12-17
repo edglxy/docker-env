@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    container_name: php_apache
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"     # Map port 80 to Apache development server
+      - "8000:8000" # Map port 8000 for Laravel development server
+      - "5173:5173" # Map port 5173 for Vite development server
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      - local
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.2.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - local
+
+networks:
+  local:
+    driver: bridge
