@@ -32,4 +32,8 @@ Use the following commands:
 Execute the following commands:
 - docker compose exec web bash
 - php artisan serve --host=0.0.0.0 --port=8000
-- npm run dev -- --host=0.0.0.0 --port=5173
+- npm run dev -- --host=0.0.0.0 --port=
+
+### Setting up permission of files to edit outside of the container
+- chown -R youruser:yourgroup folder/file
+- chmod -R 777 folder/file
