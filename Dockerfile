@@ -18,6 +18,9 @@ RUN npm install -g npm@latest
 # Enable Apache modules
 RUN a2enmod rewrite
 
+# Add root user with password
+RUN echo 'root:1234' | chpasswd
+
 # Install sudo and create a non-root user
 RUN useradd -m -s /bin/bash edglxy && \
     echo 'edglxy ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
